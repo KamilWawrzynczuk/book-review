@@ -40,7 +40,7 @@
                 </div>
                 <div>
                     <div class="book-rating">
-                    {{ number_format($book->reviews_avg_rating, 1) }}
+                        <x-star-rating :rating="$book->reviews_avg_rating"/>
                     </div>
                     <div class="book-review-count">
                     out of {{ $book->reviews_count }} {{ Str::plural('review', $book->reviews_count) }}
@@ -57,5 +57,11 @@
             </div>
         </li>
         @endforelse
+         @if ($books->count())
+                <nav class="mt-4 flex flex-col">
+                    {{ $books->links() }}
+                </nav>
+            @endif
     </ul>
+
 @endsection
